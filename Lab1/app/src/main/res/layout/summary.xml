@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SummaryActivity">
+
+    <TextView
+        android:id="@+id/books_in_your_library"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="40dp"
+        android:text="% Books in your library" />
+
+    <TextView
+        android:id="@+id/totalCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/books_in_your_library"
+        android:layout_marginTop="103dp"
+        android:text="total_cost" />
+
+    <TextView
+        android:id="@+id/totalCost_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/totalCost"
+        android:layout_marginEnd="119dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/mostExpensiveItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/books_in_your_library"
+        android:layout_marginTop="163dp"
+        android:text="Most Expensive Item:" />
+
+    <TextView
+        android:id="@+id/mostExpensiveItem_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/totalCost_edit"
+        android:layout_alignTop="@+id/mostExpensiveItem"
+        android:text="234 SEK" />
+
+    <TextView
+        android:id="@+id/cheapestItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/books_in_your_library"
+        android:layout_marginTop="224dp"
+        android:text="Cheapest Item:" />
+
+    <TextView
+        android:id="@+id/cheapestItem_Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/totalCost_edit"
+        android:layout_alignTop="@+id/cheapestItem"
+        android:text="0 kr" />
+
+    <TextView
+        android:id="@+id/avgPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/books_in_your_library"
+        android:layout_marginBottom="213dp"
+        android:text="Average Price:" />
+
+    <TextView
+        android:id="@+id/avgPrice_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/totalCost_edit"
+        android:layout_alignTop="@+id/avgPrice"
+        android:text="23 SEK" />
+</RelativeLayout>

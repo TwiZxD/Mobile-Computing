@@ -3,9 +3,11 @@ package com.example.lab1;
 import java.util.ArrayList;
 
 public class SimpleBookManager implements IBookManager {
-    ArrayList<Book> books;
+    private ArrayList<Book> books;
 
-    public SimpleBookManager() {
+    private static final SimpleBookManager manager = new SimpleBookManager();
+
+    private SimpleBookManager() {
         books = new ArrayList<>();
         createBook("Martin, Robert C.","Clean Code" ,299,"9780132350884" ,"TDA416");
         createBook("Andrew A Andrew", "Mobile Computing", 349, "123 45 6789", "CIU196");
@@ -82,6 +84,10 @@ public class SimpleBookManager implements IBookManager {
             total = total + book.getPrice();
         }
         return total;
+    }
+
+    public static SimpleBookManager getBookManager() {
+        return manager;
     }
 
     @Override
