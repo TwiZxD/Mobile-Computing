@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="53dp"
+        android:text="Title"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="27dp" />
+
+    <TextView
+        android:id="@+id/Title_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/Title"
+        android:layout_marginStart="111dp"
+        android:text="the title"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="111dp" />
+
+    <TextView
+        android:id="@+id/Author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Title"
+        android:layout_marginTop="93dp"
+        android:text="Author"
+        android:layout_alignLeft="@+id/Title" />
+
+    <TextView
+        android:id="@+id/Author_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Title_edit"
+        android:layout_alignTop="@+id/Author"
+        android:text="the author"
+        android:layout_alignLeft="@+id/Title_edit" />
+
+    <TextView
+        android:id="@+id/Course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Title"
+        android:layout_marginTop="148dp"
+        android:text="Course:" />
+
+    <TextView
+        android:id="@+id/Course_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Title_edit"
+        android:layout_alignTop="@+id/Course"
+        android:text="the course" />
+
+    <TextView
+        android:id="@+id/Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Title"
+        android:layout_marginTop="194dp"
+        android:text="Price:" />
+
+    <TextView
+        android:id="@+id/Price_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Title_edit"
+        android:layout_alignTop="@+id/Price"
+        android:text="the price" />
+
+    <TextView
+        android:id="@+id/ISBN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/Title"
+        android:layout_marginBottom="234dp"
+        android:text="ISBN" />
+
+    <TextView
+        android:id="@+id/ISBN_Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/Title_edit"
+        android:layout_alignTop="@+id/ISBN"
+        android:text="the isbn" />
+
+</RelativeLayout>
