@@ -7,66 +7,58 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class SummaryFragment extends Fragment {
-    TextView totalCost;
+public class SummaryPageFragment extends Fragment {
     SimpleBookManager manager;
+
     @Override
-
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-            manager = SimpleBookManager.getBookManager();
-            setTotalCost(manager.getTotalCost());
-        /*
-        setAmountOfBooks(manager.count());
-        setMostExpensiveItem(manager.getMaxPrice());
-        setLeastExpensiveItem(manager.getMinPrice());
-        setAveragePrice(manager.getMeanPrice());
-        */
-        }
+        manager = SimpleBookManager.getBookManager();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.summary, container, false);
-        totalCost = (TextView) view.findViewById(R.id.totalCost_edit);
+
+        setTotalCost(manager.getTotalCost(),view);
+        setAmountOfBooks(manager.count(), view);
+        setMostExpensiveItem(manager.getMaxPrice(),view);
+        setLeastExpensiveItem(manager.getMinPrice(),view);
+        setAveragePrice(manager.getMeanPrice(),view);
         return view;
     }
 
 
-    public void setTotalCost(int totalCost) {
-       // final TextView text = view.findViewById(R.id.totalCost_edit);
-
+    public void setTotalCost(int totalCost, View view) {
+        final TextView text = view.findViewById(R.id.totalCost_edit);
         String cost = Integer.toString(totalCost);
-        this.totalCost.setText(cost + " SEK");
+        text.setText(cost + " SEK");
     }
-/*
-    public void setAmountOfBooks(int amountOfBooks) {
+
+    public void setAmountOfBooks(int amountOfBooks, View view) {
         final TextView text = view.findViewById(R.id.books_in_your_library);
         String amount = Integer.toString(amountOfBooks);
         text.setText(amount + " books in your library.");
     }
 
-    public void setMostExpensiveItem(int mostExpensiveItem) {
+    public void setMostExpensiveItem(int mostExpensiveItem, View view) {
         final TextView text = view.findViewById(R.id.mostExpensiveItem_edit);
         String item = Integer.toString(mostExpensiveItem);
         text.setText(item + "SEK");
     }
 
-    public void setLeastExpensiveItem(int leastExpensiveItem) {
+    public void setLeastExpensiveItem(int leastExpensiveItem, View view) {
         final TextView text = view.findViewById(R.id.cheapestItem_Edit);
         String item = Integer.toString(leastExpensiveItem);
         text.setText(item + " SEK");
     }
 
-    public void setAveragePrice(float averagePrice) {
+    public void setAveragePrice(float averagePrice, View view) {
         final TextView text = view.findViewById(R.id.avgPrice_edit);
         String item = Float.toString(averagePrice);
         text.setText(item + " SEK");
     }
-    */
+
 
 }

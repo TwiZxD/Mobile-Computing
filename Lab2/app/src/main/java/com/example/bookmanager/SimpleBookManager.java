@@ -29,7 +29,7 @@ public class SimpleBookManager implements IBookManager {
     }
 
 
-    private Book createBook(String author, String title, int price, String isbn, String course) {
+    public Book createBook(String author, String title, int price, String isbn, String course) {
         Book newBook = new Book(author, title, price, isbn, course);
         books.add(newBook);
         return newBook;
