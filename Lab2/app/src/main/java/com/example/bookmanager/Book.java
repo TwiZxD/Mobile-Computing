@@ -17,11 +17,7 @@ public class Book {
     }
 
     public Book() {
-        this.author = "";
-        this.title = "";
-        this.price = 0;
-        this.isbn = "";
-        this.course = "";
+        new Book("","",0,"","");
     }
 
     /** Getters */

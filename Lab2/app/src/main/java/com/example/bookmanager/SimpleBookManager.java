@@ -1,5 +1,7 @@
 package com.example.bookmanager;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class SimpleBookManager implements IBookManager {
@@ -30,7 +32,10 @@ public class SimpleBookManager implements IBookManager {
 
 
     public Book createBook(String author, String title, int price, String isbn, String course) {
+        Log.d("debugjohan", String.valueOf(price));
         Book newBook = new Book(author, title, price, isbn, course);
+        Log.d("debugjohan","getprice = " + String.valueOf(newBook.getPrice()));
+
         books.add(newBook);
         return newBook;
     }
@@ -53,8 +58,12 @@ public class SimpleBookManager implements IBookManager {
     public int getMinPrice() {
         int minPrice = books.get(0).getPrice();
         for(Book book: books) {
-            if(book.getPrice() < minPrice) {
-                minPrice = book.getPrice();
+            int thisPrice = book.getPrice();
+            if(thisPrice >= 0) {
+
+                if (thisPrice < minPrice) {
+                    minPrice = thisPrice;
+                }
             }
         }
         return minPrice;
@@ -72,16 +81,26 @@ public class SimpleBookManager implements IBookManager {
 
     public float getMeanPrice() {
         int total = 0;
+        int nonSpecifiedBooksCount = 0;
         for(Book book : books) {
-            total = total + book.getPrice();
+
+            int thisPrice = book.getPrice();
+            if(thisPrice >= 0) {
+                total += thisPrice;
+            } else
+                nonSpecifiedBooksCount++;
         }
-        return total / books.size();
+        return total / (books.size()- nonSpecifiedBooksCount);
     }
 
     public int getTotalCost() {
         int total = 0;
         for(Book book : books) {
-            total = total + book.getPrice();
+            int thisPrice = book.getPrice();
+            if(thisPrice >= 0) {
+                total += thisPrice;
+            }
+
         }
         return total;
     }

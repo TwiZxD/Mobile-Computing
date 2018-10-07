@@ -45,8 +45,16 @@ public class DetailActivity extends AppCompatActivity {
                 }
 
                 public void setPrice(int price) {
-                    final TextView text = findViewById(R.id.Price_edit); {
+                    if(price < 0) {
+                        final TextView text = findViewById(R.id.Price_edit); {
+                            text.setText("");
+                        }
+                    } else {
+                        final TextView text = findViewById(R.id.Price_edit); {
+                            text.setText(String.valueOf(price));
+                        }
                     }
+
                 }
 
                 public void setISBN(String ISBN) {

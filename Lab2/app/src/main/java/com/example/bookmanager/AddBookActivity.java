@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddBookActivity extends AppCompatActivity {
     SimpleBookManager manager;
@@ -19,23 +21,47 @@ public class AddBookActivity extends AppCompatActivity {
         final EditText title = findViewById(R.id.addBookTitle);
         final EditText author = findViewById(R.id.addBookAuthor);
         final EditText course = findViewById(R.id.addBookCourse);
-        final EditText ISBN = findViewById(R.id.addBookCourse);
-        final EditText price = findViewById(R.id.addBookCourse);
+        final EditText ISBN = findViewById(R.id.addBookISBN);
+        final EditText price = findViewById(R.id.addBookPrice);
 
 
         final Button button = findViewById(R.id.addBookAddButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                manager.createBook("Eva, Kuve", "Linear Algebra", 649, "231289632", "MTA215");
+                //manager.createBook("Eva, Kuve", "Linear Algebra", 649, "231289632", "MTA215");
+               // Log.d("debugjohan", title.getText().toString() + "");
+         //       Toast.makeText(getApplicationContext(), title.getText().toString(),Toast.LENGTH_SHORT).show();
 
-                /* manager.createBook(
-                        author.getText().toString(),
-                        title.getText().toString(),
-                        Integer.parseInt(price.getText().toString()),
-                        ISBN.getText().toString(),
-                        course.getText().toString()
-                );*/
+                if(title.getText().toString().equals(""))
+                    Toast.makeText(getApplicationContext(), "Plese enter a title",Toast.LENGTH_SHORT).show();
+                else {
+                    String pricecheck = price.getText().toString();
+                    try {
+                       // Integer.parseInt(pricecheck);
+
+                        manager.createBook(
+                                author.getText().toString(),
+                                title.getText().toString(),
+                                (!pricecheck.equals("") ? Integer.parseInt(pricecheck) : -1),
+                                //  Integer.parseInt(price.getText().toString()),
+                                ISBN.getText().toString(),
+                                course.getText().toString()
+
+                        );
+                        Toast.makeText(getApplicationContext(), title.getText().toString() + " has been added.", Toast.LENGTH_SHORT).show();
+
+
+
+                    } catch(NumberFormatException e) {
+                        Toast.makeText(getApplicationContext(), "Price must be a number", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+
+
+
 
             }
         });
