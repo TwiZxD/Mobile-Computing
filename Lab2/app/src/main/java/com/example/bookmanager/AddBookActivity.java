@@ -49,9 +49,13 @@ public class AddBookActivity extends AppCompatActivity {
                                 course.getText().toString()
 
                         );
+                        author.setText("");
+                        title.setText("");
+                        price.setText("");
+                        ISBN.setText("");
+                        course.setText("");
+                        recreate();
                         Toast.makeText(getApplicationContext(), title.getText().toString() + " has been added.", Toast.LENGTH_SHORT).show();
-
-
 
                     } catch(NumberFormatException e) {
                         Toast.makeText(getApplicationContext(), "Price must be a number", Toast.LENGTH_SHORT).show();
