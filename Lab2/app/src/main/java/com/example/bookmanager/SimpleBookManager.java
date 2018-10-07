@@ -1,16 +1,26 @@
 package com.example.bookmanager;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SimpleBookManager implements IBookManager {
     private ArrayList<Book> books;
 
     private static final SimpleBookManager manager = new SimpleBookManager();
 
+
     private SimpleBookManager() {
         books = new ArrayList<>();
+        //this.books = books;
         createBook("Martin, Robert C.","Clean Code" ,299,"9780132350884" ,"TDA416");
         createBook("Andrew A Andrew", "Mobile Computing", 349, "123 45 6789", "CIU196");
         createBook("Gratte, Ingvar", "Programming C/C++", 399, "91-634-2002-3", "TDA452");
@@ -44,6 +54,9 @@ public class SimpleBookManager implements IBookManager {
         return books;
     }
 
+    public void setAllBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
     public void removeBook(Book book) {
         books.remove(book);
     }
@@ -56,7 +69,10 @@ public class SimpleBookManager implements IBookManager {
     }
 
     public int getMinPrice() {
-        int minPrice = books.get(0).getPrice();
+        if (books.size() == 0) {
+            return 0;
+        }
+        int minPrice = Integer.MAX_VALUE;
         for(Book book: books) {
             int thisPrice = book.getPrice();
             if(thisPrice >= 0) {
@@ -70,7 +86,10 @@ public class SimpleBookManager implements IBookManager {
     }
 
     public int getMaxPrice() {
-        int maxPrice = books.get(0).getPrice();
+        if (books.size() == 0) {
+            return 0;
+        }
+        int maxPrice = 0;
         for(Book book : books) {
             if(book.getPrice() > maxPrice) {
                 maxPrice = book.getPrice();
@@ -80,6 +99,9 @@ public class SimpleBookManager implements IBookManager {
     }
 
     public float getMeanPrice() {
+        if (books.size() == 0) {
+            return 0;
+        }
         int total = 0;
         int nonSpecifiedBooksCount = 0;
         for(Book book : books) {
@@ -94,6 +116,9 @@ public class SimpleBookManager implements IBookManager {
     }
 
     public int getTotalCost() {
+        if (books.size() == 0) {
+            return 0;
+        }
         int total = 0;
         for(Book book : books) {
             int thisPrice = book.getPrice();
@@ -111,6 +136,9 @@ public class SimpleBookManager implements IBookManager {
 
     @Override
     public void saveChanges() {
-        //TODO
+      //  SharedPreferences sharedPreferences = getSharedPreferences
     }
+
+
+
 }

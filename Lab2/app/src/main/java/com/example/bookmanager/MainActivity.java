@@ -1,6 +1,8 @@
 package com.example.bookmanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -16,18 +18,34 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     public static SimpleBookManager manager;
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
-
+//Test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Debug2", "Debug2");
         super.onCreate(savedInstanceState);
         manager = SimpleBookManager.getBookManager();
+        loadData();
+
+        /*
+        if(getArrayList("books") != null) {
+            Log.d("shareprefdebug", "getting arrayList");
+            manager.setAllBooks(getArrayList("books"));
+
+        } else {
+            Log.d("shareprefdebug", "No list");
+        }
+        */
         setContentView(R.layout.activity_main);
 
     //    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -58,15 +76,66 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
+
+    private void saveData() {
+        SharedPreferences pref = getSharedPreferences("books shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(manager.getAllBooks());
+        editor.putString("books", json);
+        editor.apply();
+    }
+
+    private void loadData() {
+        SharedPreferences pref = getSharedPreferences("books shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = pref.getString("books", null );
+        Type type = new TypeToken<ArrayList<Book>>() {}.getType();
+        ArrayList<Book> books = gson.fromJson(json, type);
+
+        if (books == null) {
+            books = new ArrayList<>();
+
+        }
+        manager.setAllBooks(books);
+    }
+
+/*
+    public void saveArrayList(ArrayList<Book> list, String key){
+        Log.d("shareprefdebug", "Saveing pref");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        editor.putString(key, json);
+        editor.apply();     // This line is IMPORTANT !!!
+        Log.d("shareprefdebug", "Pref saved");
+    }
+
+    public ArrayList<Book> getArrayList(String key){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Gson gson = new Gson();
+        Log.d("shareprefdebug", "getting with key");
+        String json = prefs.getString(key, null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        Log.d("shareprefdebug", "ok");
+        return gson.fromJson(json, type);
+    }
+*/
 
     @Override
      protected void onResume() {
         super.onResume();
          mSectionsPagerAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveData();
+    }
+
 /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
