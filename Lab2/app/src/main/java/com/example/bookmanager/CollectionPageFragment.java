@@ -1,18 +1,14 @@
 package com.example.bookmanager;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,8 +17,6 @@ public class CollectionPageFragment extends Fragment implements AdapterView.OnIt
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //if (getArguments() != null) { }
     }
 
     @Override
@@ -36,7 +30,6 @@ public class CollectionPageFragment extends Fragment implements AdapterView.OnIt
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);
         return view;
-
     }
 
     @Override
@@ -44,11 +37,9 @@ public class CollectionPageFragment extends Fragment implements AdapterView.OnIt
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra("index", i);
         startActivity(intent);
-
     }
 
     class ListAdapter extends BaseAdapter {
-
         @Override
         public int getCount() {
             return manager.count();
@@ -71,10 +62,7 @@ public class CollectionPageFragment extends Fragment implements AdapterView.OnIt
             view = getLayoutInflater().inflate(R.layout.customlistview,null);
             TextView textView = view.findViewById(R.id.customlistViewText);
             textView.setText(manager.getAllBooks().get(i).getTitle());
-
             return view;
         }
-
-
     }
 }

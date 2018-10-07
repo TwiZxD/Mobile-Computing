@@ -29,7 +29,6 @@ public class SummaryPageFragment extends Fragment {
         return view;
     }
 
-
     public void setTotalCost(int totalCost, View view) {
         final TextView text = view.findViewById(R.id.totalCost_edit);
         String cost = Integer.toString(totalCost);
@@ -59,6 +58,5 @@ public class SummaryPageFragment extends Fragment {
         String item = Float.toString(averagePrice);
         text.setText(item + " SEK");
     }
-
 
 }
