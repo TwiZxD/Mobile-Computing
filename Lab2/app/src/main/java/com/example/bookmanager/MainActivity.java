@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        loadData();
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -96,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
      protected void onResume() {
         super.onResume();
          mSectionsPagerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveData();
     }
 /*
     @Override

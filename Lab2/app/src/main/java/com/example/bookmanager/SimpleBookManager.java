@@ -60,6 +60,9 @@ public class SimpleBookManager implements IBookManager {
     }
 
     public int getMinPrice() {
+        if (books == null || books.size() == 0) {
+            return 0;
+        }
         int minPrice = books.get(0).getPrice();
         for(Book book: books) {
             int thisPrice = book.getPrice();
@@ -74,6 +77,9 @@ public class SimpleBookManager implements IBookManager {
     }
 
     public int getMaxPrice() {
+        if (books == null || books.size() == 0) {
+            return 0;
+        }
         int maxPrice = books.get(0).getPrice();
         for(Book book : books) {
             if(book.getPrice() > maxPrice) {
@@ -84,6 +90,9 @@ public class SimpleBookManager implements IBookManager {
     }
 
     public float getMeanPrice() {
+        if (books == null || books.size() == 0) {
+            return 0;
+        }
         int total = 0;
         int nonSpecifiedBooksCount = 0;
         for(Book book : books) {
@@ -94,7 +103,10 @@ public class SimpleBookManager implements IBookManager {
             } else
                 nonSpecifiedBooksCount++;
         }
-        return total / (books.size()- nonSpecifiedBooksCount);
+        if(total == 0) {
+            return 0;
+        }
+        return total / (books.size() - nonSpecifiedBooksCount);
     }
 
     public int getTotalCost() {
