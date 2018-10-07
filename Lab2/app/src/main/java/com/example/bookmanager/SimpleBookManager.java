@@ -1,13 +1,7 @@
 package com.example.bookmanager;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -20,14 +14,15 @@ public class SimpleBookManager implements IBookManager {
 
     private SimpleBookManager() {
         books = new ArrayList<>();
-        //this.books = books;
+    }
+
+    private void addRandomBooks () {
         createBook("Martin, Robert C.","Clean Code" ,299,"9780132350884" ,"TDA416");
         createBook("Andrew A Andrew", "Mobile Computing", 349, "123 45 6789", "CIU196");
         createBook("Gratte, Ingvar", "Programming C/C++", 399, "91-634-2002-3", "TDA452");
         createBook("Johnsson, Oscar", "Databases", 299, "9213521321", "TDA231");
         createBook("Eva, Kuve", "Linear Algebra", 649, "231289632", "MTA215");
     }
-
     public int count() {
         return books.size();
     }
@@ -57,6 +52,7 @@ public class SimpleBookManager implements IBookManager {
     public void setAllBooks(ArrayList<Book> books) {
         this.books = books;
     }
+
     public void removeBook(Book book) {
         books.remove(book);
     }
@@ -86,6 +82,9 @@ public class SimpleBookManager implements IBookManager {
     }
 
     public int getMaxPrice() {
+        if (books == null || books.size() == 0) {
+            return 0;
+        }
         if (books.size() == 0) {
             return 0;
         }
@@ -99,7 +98,7 @@ public class SimpleBookManager implements IBookManager {
     }
 
     public float getMeanPrice() {
-        if (books.size() == 0) {
+        if (books == null || books.size() == 0) {
             return 0;
         }
         int total = 0;
@@ -112,7 +111,10 @@ public class SimpleBookManager implements IBookManager {
             } else
                 nonSpecifiedBooksCount++;
         }
-        return total / (books.size()- nonSpecifiedBooksCount);
+        if(total == 0) {
+            return 0;
+        }
+        return total / (books.size() - nonSpecifiedBooksCount);
     }
 
     public int getTotalCost() {
@@ -125,7 +127,6 @@ public class SimpleBookManager implements IBookManager {
             if(thisPrice >= 0) {
                 total += thisPrice;
             }
-
         }
         return total;
     }
@@ -138,7 +139,4 @@ public class SimpleBookManager implements IBookManager {
     public void saveChanges() {
       //  SharedPreferences sharedPreferences = getSharedPreferences
     }
-
-
-
 }
