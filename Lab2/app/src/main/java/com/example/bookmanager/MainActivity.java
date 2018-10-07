@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Debug2", "Debug2");
         super.onCreate(savedInstanceState);
         manager = SimpleBookManager.getBookManager();
         setContentView(R.layout.activity_main);
@@ -60,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-     protected void onResume(Bundle savedInstanceState) {
+    @Override
+     protected void onResume() {
+        super.onResume();
          mSectionsPagerAdapter.notifyDataSetChanged();
     }
 /*

@@ -28,13 +28,15 @@ public class AddBookActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 manager.createBook("Eva, Kuve", "Linear Algebra", 649, "231289632", "MTA215");
-               /* manager.createBook(
+
+                /* manager.createBook(
                         author.getText().toString(),
                         title.getText().toString(),
                         Integer.parseInt(price.getText().toString()),
                         ISBN.getText().toString(),
                         course.getText().toString()
                 );*/
+
             }
         });
     }
