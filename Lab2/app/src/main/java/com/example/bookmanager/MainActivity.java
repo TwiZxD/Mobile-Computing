@@ -1,6 +1,7 @@
 package com.example.bookmanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -15,6 +16,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static SimpleBookManager manager;
@@ -58,9 +65,32 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
+
+
+    private void saveData() {
+        SharedPreferences pref = getSharedPreferences("books shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(manager.getAllBooks());
+        editor.putString("books", json);
+        editor.apply();
+    }
+
+    private void loadData() {
+        SharedPreferences pref = getSharedPreferences("books shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = pref.getString("books", null );
+        Type type = new TypeToken<ArrayList<Book>>() {}.getType();
+        ArrayList<Book> books = gson.fromJson(json, type);
+
+        if (books == null) {
+            books = new ArrayList<>();
+
+        }
+        manager.setAllBooks(books);
+    }
+
 
     @Override
      protected void onResume() {

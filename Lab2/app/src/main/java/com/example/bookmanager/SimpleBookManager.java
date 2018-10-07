@@ -44,6 +44,10 @@ public class SimpleBookManager implements IBookManager {
         return books;
     }
 
+    public void setAllBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
+
     public void removeBook(Book book) {
         books.remove(book);
     }
@@ -113,4 +117,6 @@ public class SimpleBookManager implements IBookManager {
     public void saveChanges() {
         //TODO
     }
+
+
 }
