@@ -4,10 +4,13 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class SimpleBookManager implements IBookManager {
     private ArrayList<Book> books;
 
     private static final SimpleBookManager manager = new SimpleBookManager();
+
 
     private SimpleBookManager() {
         books = new ArrayList<>();
@@ -82,7 +85,10 @@ public class SimpleBookManager implements IBookManager {
         if (books == null || books.size() == 0) {
             return 0;
         }
-        int maxPrice = books.get(0).getPrice();
+        if (books.size() == 0) {
+            return 0;
+        }
+        int maxPrice = 0;
         for(Book book : books) {
             if(book.getPrice() > maxPrice) {
                 maxPrice = book.getPrice();
@@ -112,6 +118,9 @@ public class SimpleBookManager implements IBookManager {
     }
 
     public int getTotalCost() {
+        if (books.size() == 0) {
+            return 0;
+        }
         int total = 0;
         for(Book book : books) {
             int thisPrice = book.getPrice();
@@ -128,8 +137,6 @@ public class SimpleBookManager implements IBookManager {
 
     @Override
     public void saveChanges() {
-        //TODO
+      //  SharedPreferences sharedPreferences = getSharedPreferences
     }
-
-
 }
