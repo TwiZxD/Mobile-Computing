@@ -22,7 +22,9 @@ public class AddBookActivity extends AppCompatActivity {
         final EditText ISBN = findViewById(R.id.addBookISBN);
         final EditText price = findViewById(R.id.addBookPrice);
 
+
         final Button button = findViewById(R.id.addBookAddButton);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
